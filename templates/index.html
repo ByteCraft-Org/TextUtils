@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Text Utils</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">textutils.com</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact Us</a>
+                </li>
+            </ul>
+            <div class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>Welcome to Text Utils!</strong> You can do anything with your text here.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<div class="container">
+    <form action="/analyse" method="post">{% csrf_token %} <!-- Protect URL from displaying security information such as text -->
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Enter your text below :</label>
+            <textarea class="form-control" name="text" id="exampleFormControlTextarea1" rows="7"></textarea>
+        </div>
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="UpperCaseSwitch" name="UpperCase" onclick="toggleSwitches(this)">
+            <label class="form-check-label" for="UpperCaseSwitch">Upper Case</label>
+        </div>
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="LowerCaseSwitch" name="LowerCase" onclick="toggleSwitches(this)">
+            <label class="form-check-label" for="LowerCaseSwitch">Lower Case</label>
+        </div>
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="RemovePunctuationSwitch"
+                   name="RemovePunctuation">
+            <label class="form-check-label" for="RemovePunctuationSwitch">Remove Punctuation</label>
+        </div>
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="NewLineRemoveSwitch" name="NewLineRemove">
+            <label class="form-check-label" for="NewLineRemoveSwitch">New Line Remove</label>
+        </div>
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="SpaceRemoveSwitch" name="SpaceRemove">
+            <label class="form-check-label" for="SpaceRemoveSwitch">Extra Space Remove</label>
+        </div>
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="countSwitch" name="CharCount">
+            <label class="form-check-label" for="countSwitch">Character Count</label>
+        </div>
+        <button type="submit" class="btn btn-success mt-2">Analyse Text</button>
+    </form>
+</div>
+
+<script>
+    function toggleSwitches(checkbox) {
+      var switches = document.querySelectorAll('.form-check-input');
+
+      for (var i = 0; i < 2; i++) {
+        if (switches[i] !== checkbox) {
+          switches[i].checked = false;
+          switches[i].disabled = checkbox.checked;
+        }
+      }
+    }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
+        integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS"
+        crossorigin="anonymous"></script>
+</body>
+</html>
